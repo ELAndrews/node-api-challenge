@@ -18,6 +18,32 @@ router.get(`/api/projects`, (req, res) => {
     });
 });
 
+router.get(`/api/projects/:id/actions`, (req, res) => {
+  projects
+    .get(req.params.id)
+    .then(post => {
+      if (post === null) {
+        res.status(404).json(`There isn't a project with this id`);
+      } else {
+        projects
+          .getProjectActions(req.params.id)
+          .then(actions => {
+            if (actions.length === 0) {
+              res.status(200).json(`This post currently has no actions`);
+            } else {
+              res.status(200).json(actions);
+            }
+          })
+          .catch(error => {
+            res.status(500).json(`There was an error collecting action data`);
+          });
+      }
+    })
+    .catch(error => {
+      res.status(500).json(`There was an error collecting post data`);
+    });
+});
+
 router.post("/api/projects", (req, res) => {
   if (req.body.name && req.body.description) {
     projects
