@@ -37,7 +37,7 @@ function App() {
     <div>
       <h2>Projects</h2>
       <button onClick={handleClick}>See Projects</button>
-      <ProjectsTable projects={projects} actions={actions} />
+      <ProjectsTable projects={projects} actions={actions} getData={getData} />
     </div>
   );
 }

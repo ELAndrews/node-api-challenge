@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import TableEntry from "./TableEntry";
 
 const useStyles = makeStyles({
   table: {
@@ -16,7 +17,6 @@ const useStyles = makeStyles({
 
 export default function ProjectsTable(props) {
   const classes = useStyles();
-  console.log(props);
 
   return (
     <TableContainer component={Paper}>
@@ -27,20 +27,13 @@ export default function ProjectsTable(props) {
             <TableCell align="right">Description</TableCell>
             <TableCell align="right">Status</TableCell>
             <TableCell align="right">Actions</TableCell>
+            <TableCell align="right">Edit</TableCell>
+            <TableCell align="right">Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {props.projects.map(project => (
-            <TableRow key={project.id}>
-              <TableCell component="th" scope="row">
-                {project.name}
-              </TableCell>
-              <TableCell align="right">{project.description}</TableCell>
-              <TableCell align="right">{project.completed}</TableCell>
-              <TableCell align="right">
-                <button>See actions</button>
-              </TableCell>
-            </TableRow>
+            <TableEntry project={project} {...props} />
           ))}
         </TableBody>
       </Table>
