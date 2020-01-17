@@ -23,6 +23,10 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
+function errorHandlingMiddleware(err, req, res, next) {
+  res.status(500).json(err.message);
+}
+
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
@@ -30,9 +34,15 @@ app.use(express.json());
 app.use(projectRouters);
 app.use(actionRouters);
 
+app.get("*", (req, res) => {
+  res.status(404).json("Page not found");
+});
+
 app.use((req, res) => {
   res.json("This API is working and active");
 });
+
+app.use(errorHandlingMiddleware);
 
 app.listen(port, () => {
   console.log(`server listening on ${port}`);
