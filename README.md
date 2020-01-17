@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Express is an opinionated middleware, which is used to resolve http requests using JSON: express.json(). Express can also use express.static() to provide a root location to act as a static asset.
+
 - [ ] Describe Middleware?
+
+Middleware is a functioned plugged into the server. Middleware can be used for different purposes but lay as a mid-layer function which can assess the http request and provide a response. Middleware would be a good place to provide a function to check authentication.
 
 - [ ] Describe a Resource?
 
+A resource is the what we refer to as the static assets which using express.static(). With this function, the server uses that public/build folder as the root of the front-end code.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+The API can return success codes (2\*\*) and provide a more obvious success message. By using .json() we can implement a simple message to be returned with the request, or even providing an alert, jsx segment, or simply passing along data from the database.
+
 - [ ] How can we partition our application into sub-applications?
+
+We use sub-apps to separate our work into organised locations. These routes can then be imported using require() in the relevant sub-areas of the api.
 
 ## Minimum Viable Product
 
